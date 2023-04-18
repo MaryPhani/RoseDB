@@ -1,2 +1,17 @@
-# Project exclude paths
-/target/
+pipeline {
+    agent any
+    stages {
+stage('Snyk Test') {
+            steps {
+                echo 'Snyk Testing...'
+                snykSecurity (
+                    projectName: 'snyk_security_tool', 
+                    snykInstallation: 'snyk@latest', 
+                    snykTokenId: 'organisation-snyk-api-token',
+                    failOnIssues: false
+                    
+                )
+            }
+        }
+       }
+    }   
